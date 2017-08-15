@@ -156,7 +156,7 @@ export class Transaction {
 
     addInput(hash: Buffer, index: number, sequence?: number, scriptSig?: Buffer): number;
 
-    addOutput(scriptPubKey: Buffer | string, value: number): number;
+    addOutput(scriptPubKey: Buffer, value: number): number;
 
     byteLength(): number;
 
@@ -350,7 +350,7 @@ export const opcodes: {
 };
 
 export namespace address {
-    function fromBase58Check(address: string): Buffer;
+    function fromBase58Check(address: string): { hash: Buffer, version: number };
 
     function fromOutputScript(outputScript: Buffer, network?: Network): Buffer;
 
@@ -466,7 +466,7 @@ export namespace script {
         output: {
             check(script: Buffer): boolean;
             decode(buffer: Buffer): Buffer;
-            encode(pubKeyHash: Buffer | number): Buffer;
+            encode(pubKeyHash: Buffer): Buffer;
         };
     };
 
@@ -504,7 +504,7 @@ export namespace script {
         output: {
             check(script: Buffer): boolean;
             decode(buffer: Buffer): Buffer;
-            encode(pubKeyHash: Buffer | number): Buffer;
+            encode(pubKeyHash: Buffer): Buffer;
         };
     };
 
